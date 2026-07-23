@@ -1,0 +1,9 @@
+# Ignore video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+
+# Ignore system files
+.DS_Store
