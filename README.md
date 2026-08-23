@@ -67,3 +67,32 @@ pip install pandas numpy statsmodels matplotlib prophet jupyter
 ```
 
 R scripts run standalone; the `.ipynb` files are the Python equivalents.
+
+## Libraries & Methods
+
+Scanned every `.R`/`.ipynb` file (43 files, 13,576 lines) — the R and Python
+implementations use different libraries for the same methods, which is the
+whole design of this repo.
+
+**R side** — the `forecast` package supplies `auto.arima` (77 calls),
+`Arima` (40), `ets` (49), `tslm` (96), `stl` — plus base `lm`/`glm` (96
+calls). `dmba::regressionSummary` scores the fits, `zoo` handles the
+irregular time index, `TTR` supplies additional smoothing functions.
+
+**Python side** — `statsmodels.tsa` covers the same ground:
+`SARIMAX`, `ExponentialSmoothing`, `Holt`, `SimpleExpSmoothing`,
+`seasonal_decompose`, plus `tsaplots`/`stattools`/`acf` for diagnostics.
+`prophet.Prophet` and `pmdarima` (auto-ARIMA for Python) appear alongside
+the hand-fit statsmodels models — three approaches to the same forecasting
+problem, not one.
+
+**Clustering** (`03-Clustering.ipynb`) — `sklearn.cluster
+.AgglomerativeClustering`, `scipy.cluster.hierarchy.dendrogram`, evaluated
+with `silhouette_score`.
+
+**Other regression/ML** — `sklearn.pipeline.Pipeline`,
+`PolynomialFeatures`, `KMeans`, `StandardScaler`, `OneHotEncoder`,
+`train_test_split`, `KFold`.
+
+**Visualization** — matplotlib, seaborn, `plotly` for the interactive
+charts, `mpl_toolkits.mplot3d.Axes3D` for the 3D cluster plots.
